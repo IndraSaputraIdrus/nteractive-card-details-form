@@ -1,0 +1,29 @@
+/* Write your global styles here, in PostCSS syntax */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --error: hsl(0, 100%, 66%);
+
+    --primary-100: hsl(0, 0%, 100%);
+    --primary-200: hsl(270, 3%, 87%);
+    --primary-300: hsl(279, 6%, 55%);
+    --primary-400: hsl(278, 68%, 11%);
+  }
+}
+
+@layer components {
+  .form-control {
+    @apply flex flex-col gap-2
+  }
+
+  .form-control input {
+    @apply px-4 py-2.5 border border-primary-200 rounded
+  }
+
+  .form-control>label {
+    @apply tracking-[2px] uppercase text-sm font-semibold
+  }
+}
