@@ -9,7 +9,7 @@ export function formatCreditCardNumber(ccNumber: string) {
   return formattedString;
 }
 
-const formSchema = z.object({
+export const formSchema = z.object({
   name: z.string().min(1, { message: "Can't be blank" })
     .regex(/^[a-zA-Z\s]+$/, "Wrong format, only letter"),
   number: z.string().min(1, { message: "Can't be blank" })
