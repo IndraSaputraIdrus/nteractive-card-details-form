@@ -1,9 +1,15 @@
 <script>
 	import Form from '$lib/Form.svelte';
 	import Header from '$lib/Header.svelte';
+	import Complete from '$lib/Complete.svelte';
+	import { cardStore } from '$lib/store';
 </script>
 
-<main class="bg-primary-100 h-dvh min-w-[375px] flex flex-col gap-11">
+<main class="flex h-svh min-w-[375px] flex-col gap-11 bg-primary-100 laptop:flex-row laptop:gap-0">
 	<Header />
-	<Form />
+	{#if $cardStore.completed}
+		<Complete />
+	{:else}
+		<Form />
+	{/if}
 </main>

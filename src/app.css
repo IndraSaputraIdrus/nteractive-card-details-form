@@ -16,14 +16,14 @@
 
 @layer components {
   .form-control {
-    @apply flex flex-col gap-2
+    @apply flex flex-col gap-2;
   }
 
   .form-control input {
-    @apply px-4 py-2.5 border border-primary-200 rounded
+    @apply rounded border px-4 py-2.5;
   }
 
   .form-control>label {
-    @apply tracking-[2px] uppercase text-sm font-semibold
+    @apply text-sm font-semibold uppercase tracking-[2px];
   }
 }
