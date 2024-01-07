@@ -1,9 +1,14 @@
 <script lang="ts">
 	import Button from './Button.svelte';
-	import { cardStore } from '$lib/store';
+	import { cardStore, initialValue } from '$lib/store';
 	import ErrorMessage from '$lib/ErrorMessage.svelte';
 	import { fade } from 'svelte/transition';
 	import { formValidation, formatCreditCardNumber, formSchema } from '$lib';
+	import { onMount } from 'svelte';
+
+	onMount(() => {
+		cardStore.set(initialValue);
+	});
 
 	let errors: {
 		number?: string[] | undefined;
@@ -22,18 +27,18 @@
 
 		if (name === 'name') {
 			result = formSchema.pick({ name: true }).safeParse({ name: value });
-			$cardStore.name = value;
+			cardStore.update((state) => ({ ...state, name: value }));
 		} else if (name === 'number') {
 			result = formSchema.pick({ number: true }).safeParse({ number: value });
-			$cardStore.number = formatCreditCardNumber(value);
+			cardStore.update((state) => ({ ...state, number: value }));
 		} else if (name === 'month') {
 			result = formSchema.pick({ month: true }).safeParse({ month: value });
-			$cardStore.date.month = value;
+			cardStore.update((state) => ({ ...state, date: { ...state.date, month: value } }));
 		} else if (name === 'year') {
-			$cardStore.date.year = value;
+			cardStore.update((state) => ({ ...state, date: { ...state.date, year: value } }));
 			result = formSchema.pick({ year: true }).safeParse({ year: value });
 		} else if (name === 'cvc') {
-			$cardStore.cvc = value;
+			cardStore.update((state) => ({ ...state, cvc: value }));
 			result = formSchema.pick({ cvc: true }).safeParse({ cvc: value });
 		}
 
